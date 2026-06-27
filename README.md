@@ -304,7 +304,7 @@ This plugin follows WordPress guidelines for human-readable code. All JavaScript
 
 ### Source Code Repository
 
-https://github.com/cookienod/cookienod-wordpress
+https://github.com/cookienod/cookienod-extended
 
 ### Build Process
 
@@ -329,36 +329,48 @@ If you modify this plugin, simply edit the source files directly. No compilation
 
 ---
 
-## WordPress Directory vs GitHub Version
+### WordPress Directory vs. GitHub Version
 
-This plugin is published in two versions with different script injection methods:
+CookieNod is available in two editions, each designed for a different purpose.
 
-### WordPress Directory Version (This Plugin)
+### WordPress Directory Version
 
-This version follows **WordPress coding standards** and uses WordPress native functions:
+The version available in the WordPress Plugin Directory is designed to display the CookieNod cookie consent banner on your website.
 
-- Uses `wp_enqueue_script()`, `wp_enqueue_style()`, `wp_add_inline_script()`, and `wp_add_inline_style()` for all scripts and styles
-- Complies with WordPress Plugin Directory guidelines
-- **Recommended for users installing from WordPress Admin**
+It follows WordPress coding standards and uses WordPress native APIs for loading scripts and styles:
 
-### GitHub Version (Alternative)
+- Uses `wp_enqueue_script()`, `wp_enqueue_style()`, `wp_add_inline_script()`, and `wp_add_inline_style()`
+- Fully compliant with WordPress Plugin Directory guidelines
+- Recommended for most WordPress websites
 
-The [GitHub repository](https://github.com/cookienod/cookienod-wordpress) also contains an alternative implementation that uses **output buffering** for script injection:
+### GitHub Extended Version
 
-- Uses `ob_start()` and output buffering to inject the cookie blocker directly into HTML `<head>`
-- Can block cookies earlier (before any scripts execute)
-- May provide better cookie blocking for certain edge cases
+The CookieNod Extended version, available on GitHub, is designed for advanced cookie consent management.
 
-**When to use the GitHub version:**
-- If you experience cookie blocking issues with the WordPress directory version
-- If third-party scripts set cookies before WordPress scripts execute
-- If you need maximum cookie blocking coverage
+In addition to the cookie banner, it includes enhanced features for managing and blocking cookies before user consent.
 
-To use the GitHub version, download the ZIP from GitHub and install manually via WordPress Admin > Plugins > Add New > Upload Plugin.
+Key differences include:
+
+- Uses output buffering `(ob_start())` to inject the cookie blocker directly into the HTML <head>
+- Can prevent third-party scripts from setting cookies before consent is given
+- Provides improved cookie blocking coverage for complex websites and edge cases
+- Includes additional features that are not available in the WordPress Directory version
+- Plugin updates are handled seamlessly through GitHub
+
+### When to use the GitHub Extended version
+
+Use the Extended version if:
+
+- You require advanced cookie consent management.
+- Third-party scripts set cookies before WordPress enqueued scripts execute.
+- You need maximum cookie blocking coverage.
+- The WordPress Directory version does not fully block cookies on your site.
+
+The CookieNod Extended version is available from the GitHub repository:
+
+https://github.com/cookienod/cookienod-extended
 
 ---
-
-## Changelog
 
 ## Changelog
 
