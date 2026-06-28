@@ -4,7 +4,7 @@
  * Plugin URI: https://cookienod.com
  * Update URI: https://github.com/cookienod/cookienod-extended
  * Description: GDPR/CCPA compliant cookie consent manager with automated cookie scanning and consent controls.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: CookieNod Team
  * Author URI: https://cookienod.com/about
  * License: GPL v2 or later
@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('COOKIENOD_EXTENDED_VERSION', '1.0.1');
+define('COOKIENOD_EXTENDED_VERSION', '1.0.2');
 define('COOKIENOD_EXTENDED_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('COOKIENOD_EXTENDED_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('COOKIENOD_EXTENDED_PLUGIN_FILE', __FILE__);
