@@ -31,8 +31,8 @@ class CookieNod_Updater {
      * Hook into site_transient_update_plugins to inject update data
      */
     public function inject_update_data($transient) {
-        if (empty($transient->response)) {
-            return $transient;
+        if (!isset($transient->response)) {
+            $transient->response = array();
         }
 
         // Check if our plugin needs updating
@@ -82,7 +82,7 @@ class CookieNod_Updater {
             return $res;
         }
 
-        if (!isset($args->slug) || $args->slug !== 'cookienod') {
+        if (!isset($args->slug) || $args->slug !== 'cookienod-extended') {
             return $res;
         }
 
@@ -95,7 +95,7 @@ class CookieNod_Updater {
         $plugin_data = $this->get_plugin_data();
 
         return (object) array(
-            'slug'          => 'cookienod',
+            'slug'          => 'cookienod-extended',
             'name'          => $plugin_data['Name'],
             'new_version'   => ltrim($update_data->tag_name, 'v'),
             'version'       => ltrim($update_data->tag_name, 'v'),
