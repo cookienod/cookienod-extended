@@ -168,6 +168,11 @@ class CookieNodExtended_Frontend {
         $ajax_url = admin_url('admin-ajax.php');
         $nonce = wp_create_nonce('cookienod_wp_nonce');
 
+        // Get detected cookies from database to send to /collect API
+        $detected_cookies = get_option('cookienod_wp_detected_cookies', array());
+        $detected_cookies_json = wp_json_encode($detected_cookies);
+        $detected_cookies_attr = htmlspecialchars($detected_cookies_json, ENT_QUOTES, 'UTF-8');
+
         // Build data-texts attribute as JSON
         $texts_json = wp_json_encode($texts);
         $texts_attr = htmlspecialchars($texts_json, ENT_QUOTES, 'UTF-8');
@@ -175,7 +180,7 @@ class CookieNodExtended_Frontend {
         // Register and enqueue the main cookienod script
         wp_register_script(
             'cookienod-main',
-            plugins_url('assets/js/cookienod.min.js', COOKIENOD_EXTENDED_PLUGIN_FILE),
+            plugins_url('assets/js/cookienod.min.js?x=1e344', COOKIENOD_EXTENDED_PLUGIN_FILE),
             array(),
             COOKIENOD_EXTENDED_VERSION,
             false // Load in head
@@ -183,12 +188,13 @@ class CookieNodExtended_Frontend {
 
         // Build attributes string - include A/B testing variant if available
         $attrs = sprintf(
-            ' data-license-key="%s" data-block-mode="%s" data-banner-position="%s" data-banner-theme="%s" data-texts="%s"',
+            ' data-license-key="%s" data-block-mode="%s" data-banner-position="%s" data-banner-theme="%s" data-texts="%s" data-detected-cookies="%s"',
             esc_attr($api_key_escaped),
             esc_attr($block_mode),
             esc_attr($position),
             esc_attr($theme),
-            esc_attr($texts_attr)
+            esc_attr($texts_attr),
+            esc_attr($detected_cookies_attr)
         );
 
         // Apply custom script attributes filter (for A/B testing, Google Consent Mode, etc.)
