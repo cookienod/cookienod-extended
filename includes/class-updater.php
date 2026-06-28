@@ -31,6 +31,10 @@ class CookieNod_Updater {
      * Hook into site_transient_update_plugins to inject update data
      */
     public function inject_update_data($transient) {
+        if (!$transient || !is_object($transient)) {
+            return $transient;
+        }
+
         if (!isset($transient->response)) {
             $transient->response = array();
         }
